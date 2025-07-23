@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Louis Philippe - Luxure Suits</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- START OF CSS CODE --- */
+
+        /* --- GLOBAL STYLES & VARIABLES --- */
+        :root {
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            --color-background: #FDFDFD;
+            --color-text-dark: #222222;
+            --color-text-light: #FDFDFD;
+            --color-accent: #c9a96e;
+            --color-footer-bg: #1a1a1a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-background);
+            color: var(--color-text-dark);
+            overflow-x: hidden;
+            /* Added to prevent layout shift from translator */
+            top: 0 !important;
+        }
+
+        h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; }
+
+        p { line-height: 1.6; font-weight: 300; }
+
+        /* --- HEADER & NAVIGATION --- */
+        .main-header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 5%; z-index: 100;
+            background-color: rgba(253, 253, 253, 0.8);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .logo img { height: 40px; }
+        .main-nav {
+            display: flex;
+            align-items: center;
+        }
+        .main-nav a {
+            text-decoration: none; color: var(--color-text-dark);
+            margin-left: 30px; font-size: 16px; transition: color 0.3s ease;
+        }
+        .main-nav a:hover { color: var(--color-accent); }
+
+        /* --- NEW: GOOGLE TRANSLATE STYLES --- */
+        #google_translate_element {
+            margin-left: 30px;
+        }
+        .goog-te-gadget-simple {
+            background-color: transparent !important;
+            border: none !important;
+            font-size: 16px !important;
+            cursor: pointer;
+        }
+        .goog-te-gadget-simple .goog-te-menu-value span {
+            color: var(--color-text-dark) !important;
+            font-family: var(--font-body) !important;
+            font-weight: 400 !important;
+            font-size: 16px !important;
+        }
+        .goog-te-gadget-simple:hover .goog-te-menu-value span {
+            color: var(--color-accent) !important;
+        }
+        .goog-te-gadget-icon {
+            display: none !important; /* Hides the Google icon */
+        }
+        /* Removes the top bar google creates on translation */
+        iframe.goog-te-banner-frame {
+            display: none !important;
+        }
+
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            height: 100vh; position: relative;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--color-text-light); text-align: center;
+            background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2078&auto=format&fit=crop&ixlib=rb-4.0.3'); /* Fallback image */
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-video-container {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            overflow: hidden; z-index: -1;
+        }
+        .hero-video-container::after {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Darker overlay for text contrast */
+            z-index: 0;
+        }
+        .hero-video-container video { width: 100%; height: 100%; object-fit: cover; }
+        .hero-content { position: relative; z-index: 1; } /* Ensure text is above the overlay */
+        .hero-content h1 { font-size: 5rem; margin-bottom: 1rem; }
+        .hero-content p { font-size: 1.5rem; }
+
+        /* --- GENERAL CONTENT SECTION --- */
+        .content-section {
+            padding: 100px 15%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+        }
+        .content-section.text-center { text-align: center; }
+        .content-section h2 { font-size: 3rem; margin-bottom: 20px; }
+        .content-section .large-p { font-size: 1.2rem; max-width: 700px; }
+
+        /* --- FEATURES SECTION --- */
+        .features-section {
+            padding: 100px 10%;
+            text-align: center;
+        }
+        .features-section h2 {
+            font-size: 3rem;
+            margin-bottom: 60px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        .features-grid li h3 {
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+        }
+        .features-grid li p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* --- PINNED SCROLLING SECTION --- */
+        .pinned-section { min-height: 150vh; }
+        .pinned-container { height: 100vh; display: flex; overflow: hidden; }
+        .pin-text-panel, .pin-image-panel {
+            width: 50%; height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column; padding: 5%;
+        }
+        .pin-text-panel h3 { font-size: 2.5rem; margin-bottom: 20px; }
+        .pin-image-panel img { width: 100%; height: auto; max-height: 80vh; object-fit: contain; }
+
+        /* --- IMAGE WITH TEXT SECTION --- */
+        .image-with-text { display: flex; flex-direction: row; align-items: center; gap: 50px; }
+        .content-image, .content-text { flex: 1; }
+        .content-image img { width: 100%; height: auto; }
+        .cta-button {
+            display: inline-block; margin-top: 20px; padding: 12px 30px;
+            border: 1px solid var(--color-accent); color: var(--color-accent);
+            text-decoration: none; transition: all 0.3s ease;
+        }
+        .cta-button:hover { background-color: var(--color-accent); color: var(--color-text-light); }
+
+        /* --- FOOTER --- */
+        .main-footer {
+            background-color: var(--color-footer-bg); color: var(--color-text-light);
+            padding: 40px 5%;
+        }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; }
+        .footer-links a {
+            color: var(--color-text-light); text-decoration: none;
+            margin-left: 20px; opacity: 0.7; transition: opacity 0.3s ease;
+        }
+        .footer-links a:hover { opacity: 1; }
+
+        /* --- ANIMATION HIDING --- */
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* --- RESPONSIVE STYLES --- */
+        @media (max-width: 768px) {
+            .main-header { flex-direction: column; gap: 15px; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { font-size: 1rem; }
+            .content-section, .features-section { padding: 80px 5%; }
+            .content-section h2, .features-section h2 { font-size: 2rem; }
+            .pinned-container { flex-direction: column; }
+            .pin-text-panel, .pin-image-panel { width: 100%; height: 50vh; }
+            .image-with-text { flex-direction: column; }
+            .footer-content { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <img src="C:\Users\vidim\Downloads\Louis-Philippe-1024x571.webp">
+        </div>
+        <nav class="main-nav">
+            <a href="#">Collections</a>
+            <a href="#">Our Story</a>
+            <a href="#">Stores</a>
+            <a href="#">Contact</a>
+            <div id="google_translate_element"></div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-video-container">
+                <video autoplay muted loop playsinline src="https://www.louisphilippe.com/img/videos/lp-home-desktop.mp4"></video>
+            </div>
+            <div class="hero-content">
+                <h1 class="animate-on-scroll">The Perfect suit</h1>
+                <p class="animate-on-scroll">Crafting stories of success for the discerning gentleman.</p>
+            </div>
+        </section>
+
+        <section class="content-section text-center">
+            <h2 class="animate-on-scroll">Luxure Suits</h2>
+            <p class="animate-on-scroll large-p">
+                Louis Philippe is a purveyor of fine clothing for the discerning gentleman. In a world where first impressions are lasting, Our philosophy is rooted in precision, craftsmanship, and a timeless appreciation for style. At Louis Philippe, we do not just make suits; we curate a statement of class. From boardrooms to formal soirées, every ensemble promises confidence, distinction, and effortless style.
+            </p>
+        </section>
+
+        <section class="features-section">
+            <h2 class="animate-on-scroll">About Product</h2>
+            <ul class="features-grid">
+                <li class="animate-on-scroll">
+                    <h3>Super 180s Wool</h3>
+                    <p>A sublime softness spun from the world's finest fibers.</p>
+                </li>
+                <li class="animate-on-scroll">
+                    <h3>Full-Canvas Interior</h3>
+                    <p>A construction that sculpts a flawless, personal silhouette.</p>
+                </li>
+                <li class="animate-on-scroll">
+                    <h3>Bemberg Lining</h3>
+                    <p>A lustrous, breathable lining for seamless and fluid comfort.</p>
+                </li>
+                <li class="animate-on-scroll">
+                    <h3>Sustainable Trims</h3>
+                    <p>Mindfully sourced corozo and recycled elements for conscious luxury.</p>
+                </li>
+                <li class="animate-on-scroll">
+                    <h3>Antimicrobial Guard</h3>
+                    <p>A hidden detail to ensure effortless poise and enduring freshness.</p>
+                </li>
+            </ul>
+        </section>
+        <section class="pinned-section">
+            <div class="pinned-container">
+                <div class="pin-text-panel">
+                    <h3>Timeless Collections</h3>
+                    <p>Each piece is a testament to our commitment to quality, designed for men who appreciate the finer details in life.</p>
+                </div>
+                <div class="pin-image-panel">
+                    <img src="C:\Users\vidim\Downloads\lp.avif">
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section image-with-text">
+            <div class="content-image animate-on-scroll">
+                 <img src="C:\Users\vidim\Downloads\louis.webp">
+                 <img src="C:\Users\vidim\Downloads\philippe.webp">
+            </div>
+            <div class="content-text animate-on-scroll">
+                <h2>A Legacy of Craftsmanship</h2>
+                <p>From the selection of the finest fabrics to the final stitch, every Louis Philippe garment embodies a tradition of sartorial excellence passed down through generations.</p>
+                <a href="#" class="cta-button">Explore Our Story</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Louis Philippe. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Social</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const animatedElements = document.querySelectorAll(".animate-on-scroll");
+            animatedElements.forEach(element => {
+                gsap.fromTo(element,
+                    { opacity: 0, y: 50 },
+                    {
+                        opacity: 1, y: 0,
+                        duration: 1, ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: element,
+                            start: 'top 85%',
+                            toggleActions: 'play none none none',
+                        }
+                    }
+                );
+            });
+
+            gsap.to(".pinned-container", {
+                scrollTrigger: {
+                    trigger: ".pinned-section",
+                    start: "top top",
+                    end: "bottom bottom",
+                    pin: ".pin-text-panel",
+                }
+            });
+        });
+    </script>
+    
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({
+              pageLanguage: 'en',
+              layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+              autoDisplay: false
+          }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
